@@ -1,0 +1,11 @@
+
+o) 21 Aug 2001
+    - initial release
+
+o) 22 Aug 2001
+    - now when a class name is passed it checks via
+
+           if ((blessed( $class ) || string( $class )) && $class->isa( $shouldbe )) {
+
+      so that you can call it as a class method and still pass the signature.
+

@@ -9,7 +9,7 @@ use Scalar::Util qw ( blessed );
 use Data::Dumper;
 use Attribute::Handlers;
 
-our $VERSION    = '1.00';
+our $VERSION    = '1.01';
 my  $SIGNATURES = {};
 
 sub UNIVERSAL::with : ATTR(CODE,INIT) {
@@ -65,7 +65,7 @@ sub UNIVERSAL::with : ATTR(CODE,INIT) {
 	    $m++;
 	  }
 	}
-      } elsif (blessed($_[$i]) && $_[$i]->isa( $data->[$i]) ) {
+      } elsif ((blessed($_[$i]) || string($_[$i])) && $_[$i]->isa( $data->[$i]) ) {
 	$m++;
       } elsif (!blessed($_[$i]) && ref($_[$i]) eq $data->[$i]) {
 	$m++;

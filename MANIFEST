@@ -2,6 +2,7 @@ MANIFEST
 Makefile.PL
 TODO
 README
+CHANGES
 lib/Attribute/Signature.pm
 t/signature.t
 
