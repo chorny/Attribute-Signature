@@ -9,3 +9,11 @@ o) 22 Aug 2001
 
       so that you can call it as a class method and still pass the signature.
 
+o) 30 Oct 2001
+    - Patches by Leon Brocard:
+    - new test suite (100 tests!) to expose bugs
+    - renamed int to integer so that it now works
+    - string now works
+    - number now works
+    - can now set and check returned values using 'returns'
+    (note associated change in getSignature)
