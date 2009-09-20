@@ -2,7 +2,7 @@ BEGIN {
   package main;
   use warnings;
   use Attribute::Signature;
-  use Test::Simple tests => 100;
+  use Test::More tests => 102;
   $^W = 0;
 }
 
@@ -44,7 +44,7 @@ sub squarec : with('CODE') returns('number') {
   return $code->() * $code->();
 }
 
-sub squarer : with('REF') returns('number') {
+sub squarer : with('SCALAR') returns('number') {
   my $ref = shift;
   return $$ref * $$ref;
 }
@@ -174,6 +174,7 @@ ok($@, 'square(1.1) should fail');
 
 my $answer;
 eval { $answer = square(10) };
+ok(!$@);
 ok($answer == 100, "square(10) should return 100: $@");
 
 
@@ -265,8 +266,8 @@ ok($@, "squareh() should fail");
 eval { squareh('four') };
 ok($@, "squareh('four') should fail");
 
-eval { $answer = squareh({ n => 10}) };
-ok($answer == 100, "squareh({ n => 10 }) should return 100");
+eval { $answer = squareh({ n => 9}) };
+ok($answer == 81, "squareh({ n => 9 }) should return 81");
 
 eval { squareh([]) };
 ok($@, "squareh([]) should fail");
@@ -294,6 +295,7 @@ ok($@, "squarea('four') should fail");
 eval { squarea({}) };
 ok($@, "squarea({}) should fail");
 
+$answer=0;
 eval { $answer = squarea([10]) };
 ok($answer == 100, "squarea([10]) should return 100");
 
@@ -326,6 +328,7 @@ ok($@, "squarec([]) should fail");
 eval { squarec(\10) };
 ok($@, 'squarec(\10) should fail');
 
+$answer=0;
 eval { $answer = squarec(sub { 10 }) };
 ok($answer == 100, 'squarec(sub { 10 }) should return 100');
 
@@ -337,6 +340,7 @@ ok($@, "squarec(10) should fail");
 
 
 # Test squarer
+
 eval { squarer() };
 ok($@, "squarer() should fail");
 
@@ -349,8 +353,10 @@ ok($@, "squarer({}) should fail");
 eval { squarer([]) };
 ok($@, "squarer([]) should fail");
 
-eval { $answer = squarer(\10) };
-ok($answer == 100, 'squarer(\10) should return 100');
+$answer=0;
+eval { $answer = squarer(\11) };
+ok(!$a,'squarer(\11) should succeed');
+is($answer,121, 'squarer(\11) should return 121');
 
 eval { squarer(sub {}) };
 ok($@, 'squarer(sub {}) should fail');
