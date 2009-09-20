@@ -47,7 +47,7 @@ sub UNIVERSAL::with : ATTR(CODE,INIT) {
       if ($attributes->{method}) {
 	croak("invalid number of arguments passed to method $subname");
       } else {
-	croak("invalid number of arguments passed to subroutine $subname");
+	croak("invalid number of arguments passed to subroutine $subname ($count passed, ".scalar(@$data)." required");
       }
     }
 
@@ -78,7 +78,7 @@ sub UNIVERSAL::with : ATTR(CODE,INIT) {
     print "Out of band:\n\tCount\tMatched\n\t$count\t$m\n" if $::AS_DEBUG;
 
     if ($m != $count) {
-      croak("call to $subname does not match signature");
+      croak("call to $subname does not match signature (failed args:".join(',',@failed).")");
     } else {
       $referent->( @_ );
     }
