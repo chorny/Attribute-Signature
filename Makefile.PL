@@ -12,6 +12,7 @@ WriteMakefile1(
     'LIBS'		=> [''], # e.g., '-lm'
     'DEFINE'		=> '', # e.g., '-DHAVE_SOMETHING'
     'INC'		=> '', # e.g., '-I/usr/include/other'
+    LICENSE             => 'perl',
     META_MERGE => {
         resources => {
             repository => 'http://github.com/chorny/Attribute-Signature',
