@@ -6,6 +6,7 @@
     - warning fixed
     - now calls sub with goto, means that croak/carp will work correctly
       (still does not work when checking return) (Alexandr Ciornii)
+    - Add pod.t and fix a pod error
 
 1.02   30 Oct 2001
     - Patches by Leon Brocard:

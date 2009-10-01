@@ -9,6 +9,7 @@ use Scalar::Util qw ( blessed );
 #use Data::Dumper;
 use Attribute::Handlers;
 use attributes ();
+#no warnings;
 
 our $VERSION    = '1.02';
 my  $SIGNATURES = {};
@@ -290,6 +291,8 @@ subs in the Attribute::Signature namespace.
 
 =head1 OTHER FUNCTIONS
 
+=over 4
+
 =item getSignature( string )
 
 C<Attribute::Signature> also allows you to call the getSignature
@@ -297,10 +300,13 @@ method.  The string should be the complete namespace and subroutine.
 This returns the attribute signature and returned values signature for
 the function as two array references.
 
+=back
+
 =head1 AUTHOR
 
 James A. Duncan <jduncan@fotango.com>
 Leon Brocard <leon@fotango.com>
+Alexandr Ciornii (alexchorny AT gmail.com)
 
 =head1 SEE ALSO
 
