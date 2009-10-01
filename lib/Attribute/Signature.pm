@@ -6,7 +6,7 @@ use warnings::register;
 use Carp;
 use Scalar::Util qw ( blessed );
 
-use Data::Dumper;
+#use Data::Dumper;
 use Attribute::Handlers;
 use attributes ();
 
