@@ -89,7 +89,8 @@ sub UNIVERSAL::with : ATTR(CODE,INIT) {
     if ($m != $count) {
       croak("call to $subname does not match signature (failed args:".join(',',@failed).")");
     } else {
-      $referent->( @_ );
+      #$referent->( @_ );
+      goto &$referent;
     }
   };
 }
