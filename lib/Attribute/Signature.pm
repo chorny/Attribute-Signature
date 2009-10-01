@@ -8,6 +8,7 @@ use Scalar::Util qw ( blessed );
 
 use Data::Dumper;
 use Attribute::Handlers;
+use attributes ();
 
 our $VERSION    = '1.02';
 my  $SIGNATURES = {};

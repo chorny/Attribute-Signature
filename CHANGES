@@ -3,6 +3,7 @@
     - Better error messages
     - Tests fixed and expanded
     - SCALAR, HASH, ARRAY now work  (RT#32247, RT#34734)
+    - warning fixed
 
 o) 21 Aug 2001
     - initial release
