@@ -355,7 +355,7 @@ ok($@, "squarer([]) should fail");
 
 $answer=0;
 eval { $answer = squarer(\11) };
-ok(!$a,'squarer(\11) should succeed');
+ok(!$@,'squarer(\11) should succeed');
 is($answer,121, 'squarer(\11) should return 121');
 
 eval { squarer(sub {}) };
