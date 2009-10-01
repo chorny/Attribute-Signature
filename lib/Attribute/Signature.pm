@@ -67,7 +67,8 @@ sub UNIVERSAL::with : ATTR(CODE,INIT) {
 	    $ok++;
 	  }
 	}
-      } elsif ((blessed($_[$i]) || string($_[$i])) && $_[$i]->isa( $data->[$i]) ) {
+      } elsif ((blessed($_[$i])) && $_[$i]->isa( $data->[$i]) ) {
+      # || string($_[$i])
 	$ok++;
       } elsif (!blessed($_[$i]) && ref($_[$i]) eq $data->[$i]) {
 	$ok++;
