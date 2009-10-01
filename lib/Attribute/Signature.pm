@@ -54,21 +54,28 @@ sub UNIVERSAL::with : ATTR(CODE,INIT) {
     my $m = 0;
     print "Comparisons\n" if $::AS_DEBUG;
     print "\tSignature\tValue\n" if $::AS_DEBUG;
+    my @failed;
     while($i <= $count) {
       print "\t$data->[$i]\t\t$_[$i]\n" if $::AS_DEBUG;
       last unless $data->[$i];
+      my $ok=0;
       if (lc($data->[$i]) eq $data->[$i]) {
 	## here we are checking for little types
 	my $type = $data->[$i];
 	if (Attribute::Signature->can( $type )) {
 	  if (Attribute::Signature->$type( $_[$i] )) {
-	    $m++;
+	    $ok++;
 	  }
 	}
       } elsif ((blessed($_[$i]) || string($_[$i])) && $_[$i]->isa( $data->[$i]) ) {
-	$m++;
+	$ok++;
       } elsif (!blessed($_[$i]) && ref($_[$i]) eq $data->[$i]) {
-	$m++;
+	$ok++;
+      }
+      if ($ok) {
+        $m++ ;
+      } else {
+        push @failed,$i;
       }
       $i++;
     }
