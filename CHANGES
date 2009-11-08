@@ -1,11 +1,11 @@
 1.10
     - New maintainer: Alexandr Ciornii
     - Better error messages
-    - Tests fixed and expanded
-    - SCALAR, HASH, ARRAY now work  (RT#32247, RT#34734)
+    - Tests fixed and expanded (RT#34734)
+    - SCALAR, HASH, ARRAY now work (RT#32247, RT#34734)
     - warning fixed
     - now calls sub with goto, means that croak/carp will work correctly
-      (still does not work when checking return) (Alexandr Ciornii)
+      (still does not work when checking return)
     - Add pod.t and fix a pod error
 
 1.02   30 Oct 2001

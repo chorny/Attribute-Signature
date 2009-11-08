@@ -1,3 +1,4 @@
+use 5.006;
 use ExtUtils::MakeMaker;
 # See lib/ExtUtils/MakeMaker.pm for details of how to influence
 # the contents of the Makefile that is written.
@@ -7,7 +8,7 @@ WriteMakefile1(
     'PREREQ_PM'		=> {
 			    Attribute::Handlers => 0.70,
 			    Scalar::Util        => 0.01,
-			    Test::Simple => 0,
+			    Test::More => 0,
 			   }, # e.g., Module::Name => 1.1
     'LIBS'		=> [''], # e.g., '-lm'
     'DEFINE'		=> '', # e.g., '-DHAVE_SOMETHING'
