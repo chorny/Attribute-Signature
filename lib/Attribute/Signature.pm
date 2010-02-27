@@ -2,7 +2,7 @@ package Attribute::Signature;
 
 use 5.006;
 use strict;
-use warnings::register;
+#use warnings::register;
 
 use Carp;
 use Scalar::Util qw ( blessed );
@@ -10,9 +10,9 @@ use Scalar::Util qw ( blessed );
 #use Data::Dumper;
 use Attribute::Handlers;
 use attributes ();
-#no warnings;
+#local $^W=0;
 
-our $VERSION    = '1.02';
+our $VERSION    = '1.10';
 my  $SIGNATURES = {};
 
 sub UNIVERSAL::with : ATTR(CODE,INIT) {
@@ -86,7 +86,7 @@ sub UNIVERSAL::with : ATTR(CODE,INIT) {
 
     if ($attributes->{method}) { $m++; }
 
-    print "Out of band:\n\tCount\tMatched\n\t$count\t$m\n" if $::AS_DEBUG;
+    print "Out of band:\n\tCount\tMatched\n\t$count\t$m\n" if defined $::AS_DEBUG && $::AS_DEBUG;
 
     if ($m != $count) {
       croak("call to $subname does not match signature (failed args:".join(',',@failed).")");
