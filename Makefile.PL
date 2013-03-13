@@ -4,6 +4,11 @@ use ExtUtils::MakeMaker;
 # the contents of the Makefile that is written.
 WriteMakefile1(
     'NAME'		=> 'Attribute::Signature',
+    'AUTHOR' => [
+        'James A. Duncan <jduncan@fotango.com>',
+        'Leon Brocard <leon@fotango.com>',
+        'Alexandr Ciornii (alexchorny AT gmail.com)',
+    ],
     'VERSION_FROM'	=> 'lib/Attribute/Signature.pm', # finds $VERSION
     'PREREQ_PM'		=> {
 			    Attribute::Handlers => 0.70,
@@ -13,24 +18,31 @@ WriteMakefile1(
     #'DEFINE'		=> '', # e.g., '-DHAVE_SOMETHING'
     #'INC'		=> '', # e.g., '-I/usr/include/other'
     MIN_PERL_VERSION => '5.006',
-    BUILD_REQUIRES => {
+    TEST_REQUIRES => {
 			    Test::More => 0,
     },
     LICENSE             => 'perl',
     META_MERGE => {
         resources => {
             repository => 'http://github.com/chorny/Attribute-Signature',
-            'Repository-clone' => 'git://github.com/chorny/Attribute-Signature.git',
         },
     },
 );
 
-sub WriteMakefile1 {  #Written by Alexandr Ciornii, version 0.21. Added by eumm-upgrade.
+sub WriteMakefile1 {  #Compatibility code for old versions of EU::MM. Written by Alexandr Ciornii, version 0.23. Added by eumm-upgrade.
     my %params=@_;
     my $eumm_version=$ExtUtils::MakeMaker::VERSION;
     $eumm_version=eval $eumm_version;
     die "EXTRA_META is deprecated" if exists $params{EXTRA_META};
     die "License not specified" if not exists $params{LICENSE};
+    if ($params{AUTHOR} and ref($params{AUTHOR}) eq 'ARRAY' and $eumm_version < 6.5705) {
+        $params{META_ADD}->{author}=$params{AUTHOR};
+        $params{AUTHOR}=join(', ',@{$params{AUTHOR}});
+    }
+    if ($params{TEST_REQUIRES} and $eumm_version < 6.64) {
+        $params{BUILD_REQUIRES}={ %{$params{BUILD_REQUIRES} || {}} , %{$params{TEST_REQUIRES}} };
+        delete $params{TEST_REQUIRES};
+    }
     if ($params{BUILD_REQUIRES} and $eumm_version < 6.5503) {
         #EUMM 6.5502 has problems with BUILD_REQUIRES
         $params{PREREQ_PM}={ %{$params{PREREQ_PM} || {}} , %{$params{BUILD_REQUIRES}} };
