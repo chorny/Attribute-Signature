@@ -13,10 +13,7 @@ WriteMakefile1(
     'PREREQ_PM'		=> {
 			    Attribute::Handlers => 0.70,
 			    Scalar::Util        => 0.01,
-			   }, # e.g., Module::Name => 1.1
-    #'LIBS'		=> [''], # e.g., '-lm'
-    #'DEFINE'		=> '', # e.g., '-DHAVE_SOMETHING'
-    #'INC'		=> '', # e.g., '-I/usr/include/other'
+			   },
     MIN_PERL_VERSION => '5.006',
     TEST_REQUIRES => {
 			    Test::More => 0,
@@ -27,6 +24,12 @@ WriteMakefile1(
             repository => 'http://github.com/chorny/Attribute-Signature',
         },
     },
+    $^O =~/win/i ? (
+        dist => {
+            TAR      => 'ptar',
+            TARFLAGS => '-c -C -f',
+        },
+    ) : (),
 );
 
 sub WriteMakefile1 {  #Compatibility code for old versions of EU::MM. Written by Alexandr Ciornii, version 0.23. Added by eumm-upgrade.
