@@ -12,7 +12,7 @@ use Attribute::Handlers;
 use attributes ();
 #local $^W=0;
 
-our $VERSION    = '1.10';
+our $VERSION    = '1.11';
 my  $SIGNATURES = {};
 
 sub UNIVERSAL::with : ATTR(CODE,INIT) {

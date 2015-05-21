@@ -11,12 +11,12 @@ WriteMakefile1(
     ],
     'VERSION_FROM'	=> 'lib/Attribute/Signature.pm', # finds $VERSION
     'PREREQ_PM'		=> {
-			    Attribute::Handlers => 0.70,
-			    Scalar::Util        => 0.01,
+			    'Attribute::Handlers' => 0.70,
+			    'Scalar::Util'        => 0.01,
 			   },
     MIN_PERL_VERSION => '5.006',
     TEST_REQUIRES => {
-			    Test::More => 0,
+			    'Test::More' => 0,
     },
     LICENSE             => 'perl',
     META_MERGE => {

@@ -1,3 +1,6 @@
+1.11  2015-05-21
+    - Bad key in META_MERGE prevented installation
+
 1.10  2010-02-28
     - New maintainer: Alexandr Ciornii
     - Better error messages
